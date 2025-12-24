@@ -1,0 +1,2 @@
+# ayudarg
+proyecto solidario
