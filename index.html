@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <style>
         :root {
@@ -192,6 +193,7 @@
         <a href="https://wa.me/543814028779?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20German%20Esteban.%20Estoy%20con%20él.%20Por%20favor%20respondame." class="btn btn-whatsapp">
             <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
         </a>
+        <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
     </div>
 
     <div class="info-card">
@@ -227,5 +229,8 @@
     </div>
 </div>
 
+<script>
+    new QRCode(document.getElementById("qrcode"), "https://bucolic-tapioca-152ed7.netlify.app/");
+</script>
 </body>
 </html>
