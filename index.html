@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.O.S. - Pedro German Esteban</title>
+    <title>S.O.S. - Pedro Gerardo Reynoso</title>
     
     <meta name="description" content="Información de emergencia para Pedro German Esteban">
     <meta name="theme-color" content="#e63946">
@@ -125,6 +125,7 @@
 
         .btn-phone { background-color: var(--exito); }
         .btn-whatsapp { background-color: #25D366; }
+        .btn-download { background-color: #007bff; }
 
         /* Secciones de Información */
         .info-card {
@@ -178,11 +179,11 @@
 
     <div class="profile-header">
         <div class="avatar-container">
-            <img src="https://i.imgur.com/8Q5Xg6D.png" alt="Pedro German Esteban">
+            <img src="https://i.imgur.com/8Q5Xg6D.png" alt="Pedro Gerardo Reynoso">
         </div>
-        <h2 class="patient-name">Pedro German Esteban</h2>
+        <h2 class="patient-name">Pedro Gerardo Reynoso</h2>
         <div class="location-tag">
-            <i class="fas fa-map-marker-alt"></i> El Colmenar, Tucumán
+            <i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán
         </div>
     </div>
 
@@ -190,17 +191,19 @@
         <a href="tel:+543814028779" class="btn btn-phone">
             <i class="fas fa-phone-alt"></i> LLAMAR A FAMILIA
         </a>
-        <a href="https://wa.me/543814028779?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20German%20Esteban.%20Estoy%20con%20él.%20Por%20favor%20respondame." class="btn btn-whatsapp">
+        <a href="https://wa.me/543816789468?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20Gerardo%20Reynoso.%20Estoy%20con%20él.%20Por%20favor%20respondame." class="btn btn-whatsapp">
             <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
         </a>
         <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
+        <button id="download-qr" class="btn btn-download">
+            <i class="fas fa-download"></i> DESCARGAR QR
+        </button>
     </div>
 
     <div class="info-card">
         <h2><i class="fas fa-user-shield"></i> ¿Cómo ayudar?</h2>
-        <p><strong>Diagnóstico:</strong> Retraso Mental Moderado.</p>
         <p style="margin-top: 8px; font-size: 0.95rem; line-height: 1.4;">
-            Pedro puede estar confundido. Por favor, mantenga la calma, háblele amablemente y no lo deje solo hasta que llegue <strong>Ana Estela Pedro</strong>.
+            Pedro puede estar confundido. Por favor, mantenga la calma, háblele amablemente y no lo deje solo hasta que llegue <strong>Silvia Arias</strong>.
         </p>
     </div>
 
@@ -208,11 +211,11 @@
        
         <div class="data-row">
             <span class="data-label">Obra Social</span>
-            <span class="data-value">INCLUIR SALUD</span>
+            <span class="data-value">Ospe</span>
         </div>
         <div class="data-row">
             <span class="data-label">Domicilio</span>
-            <span class="data-value">P. de Mendoza 260</span>
+            <span class="data-value">Av Independencia 3200</span>
         </div>
     </div>
 
@@ -224,6 +227,16 @@
 
 <script>
     new QRCode(document.getElementById("qrcode"), "https://bucolic-tapioca-152ed7.netlify.app/");
+
+    document.getElementById('download-qr').addEventListener('click', function() {
+        var canvas = document.querySelector('#qrcode canvas');
+        if (canvas) {
+            var link = document.createElement('a');
+            link.download = 'qr-code.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    });
 </script>
 </body>
 </html>
