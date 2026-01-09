@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.O.S. - Pedro Gerardo Reynoso</title>
-    
+
     <meta name="description" content="Información de emergencia para Pedro German Esteban">
     <meta name="theme-color" content="#e63946">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    
+
     <style>
         :root {
             --alerta: #e63946;
@@ -22,11 +23,16 @@
             --gris-suave: #f8f9fa;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #333; /* Fondo oscuro para resaltar el "teléfono" */
+            background-color: #333;
+            /* Fondo oscuro para resaltar el "teléfono" */
             color: var(--texto);
             display: flex;
             justify-content: center;
@@ -38,7 +44,7 @@
             max-width: 450px;
             background: var(--blanco);
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             position: relative;
             display: flex;
             flex-direction: column;
@@ -54,12 +60,24 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
 
-        .emergency-banner h1 { font-size: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+        .emergency-banner h1 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* Foto y Nombre */
         .profile-header {
@@ -118,14 +136,24 @@
             font-weight: bold;
             margin-bottom: 15px;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
-        .btn:active { transform: scale(0.95); }
+        .btn:active {
+            transform: scale(0.95);
+        }
 
-        .btn-phone { background-color: var(--exito); }
-        .btn-whatsapp { background-color: #25D366; }
-        .btn-download { background-color: #007bff; }
+        .btn-phone {
+            background-color: var(--exito);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+        }
+
+        .btn-download {
+            background-color: #007bff;
+        }
 
         /* Secciones de Información */
         .info-card {
@@ -158,8 +186,17 @@
             border-bottom: 1px solid #eee;
         }
 
-        .data-label { font-weight: bold; color: #555; font-size: 0.9rem; }
-        .data-value { color: var(--texto); font-weight: 500; text-align: right; }
+        .data-label {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .data-value {
+            color: var(--texto);
+            font-weight: 500;
+            text-align: right;
+        }
 
         .footer-tag {
             text-align: center;
@@ -170,73 +207,77 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="phone-container">
-    <div class="emergency-banner">
-        <h1><i class="fas fa-exclamation-circle"></i> AYUDA POR FAVOR</h1>
-    </div>
-
-    <div class="profile-header">
-        <div class="avatar-container">
-            <img src="https://i.imgur.com/8Q5Xg6D.png" alt="Pedro Gerardo Reynoso">
+    <div class="phone-container">
+        <div class="emergency-banner">
+            <h1><i class="fas fa-exclamation-circle"></i> AYUDA POR FAVOR</h1>
         </div>
-        <h2 class="patient-name">Pedro Gerardo Reynoso</h2>
-        <div class="location-tag">
-            <i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán
+
+        <div class="profile-header">
+            <div class="avatar-container">
+                <img src="pedro_reynoso_v2.png" alt="Pedro Gerardo Reynoso">
+            </div>
+            <h2 class="patient-name">Pedro Gerardo Reynoso</h2>
+            <div class="location-tag">
+                <i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán
+            </div>
+        </div>
+
+        <div class="action-area">
+            <a href="tel:+543814028779" class="btn btn-phone">
+                <i class="fas fa-phone-alt"></i> LLAMAR A FAMILIA
+            </a>
+            <a href="https://wa.me/543816789468?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20Gerardo%20Reynoso.%20Estoy%20con%20él.%20Por%20favor%20respondame."
+                class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
+            </a>
+            <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
+            <button id="download-qr" class="btn btn-download">
+                <i class="fas fa-download"></i> DESCARGAR QR
+            </button>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fas fa-user-shield"></i> ¿Cómo ayudar?</h2>
+            <p style="margin-top: 8px; font-size: 0.95rem; line-height: 1.4;">
+                Pedro puede estar confundido. Por favor, mantenga la calma, háblele amablemente y no lo deje solo hasta
+                que llegue <strong>Silvia Arias</strong>.
+            </p>
+        </div>
+
+        <div class="data-table">
+
+            <div class="data-row">
+                <span class="data-label">Obra Social</span>
+                <span class="data-value">Ospe</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">Domicilio</span>
+                <span class="data-value">Av Independencia 3200</span>
+            </div>
+        </div>
+
+        <div class="footer-tag">
+            Proyecto Identificación Solidaria <br>
+            Tucumán, Argentina - 2025
         </div>
     </div>
 
-    <div class="action-area">
-        <a href="tel:+543814028779" class="btn btn-phone">
-            <i class="fas fa-phone-alt"></i> LLAMAR A FAMILIA
-        </a>
-        <a href="https://wa.me/543816789468?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20Gerardo%20Reynoso.%20Estoy%20con%20él.%20Por%20favor%20respondame." class="btn btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
-        </a>
-        <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
-        <button id="download-qr" class="btn btn-download">
-            <i class="fas fa-download"></i> DESCARGAR QR
-        </button>
-    </div>
+    <script>
+        new QRCode(document.getElementById("qrcode"), "https://bucolic-tapioca-152ed7.netlify.app/");
 
-    <div class="info-card">
-        <h2><i class="fas fa-user-shield"></i> ¿Cómo ayudar?</h2>
-        <p style="margin-top: 8px; font-size: 0.95rem; line-height: 1.4;">
-            Pedro puede estar confundido. Por favor, mantenga la calma, háblele amablemente y no lo deje solo hasta que llegue <strong>Silvia Arias</strong>.
-        </p>
-    </div>
-
-    <div class="data-table">
-       
-        <div class="data-row">
-            <span class="data-label">Obra Social</span>
-            <span class="data-value">Ospe</span>
-        </div>
-        <div class="data-row">
-            <span class="data-label">Domicilio</span>
-            <span class="data-value">Av Independencia 3200</span>
-        </div>
-    </div>
-
-    <div class="footer-tag">
-        Proyecto Identificación Solidaria <br>
-        Tucumán, Argentina - 2025
-    </div>
-</div>
-
-<script>
-    new QRCode(document.getElementById("qrcode"), "https://bucolic-tapioca-152ed7.netlify.app/");
-
-    document.getElementById('download-qr').addEventListener('click', function() {
-        var canvas = document.querySelector('#qrcode canvas');
-        if (canvas) {
-            var link = document.createElement('a');
-            link.download = 'qr-code.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        }
-    });
-</script>
+        document.getElementById('download-qr').addEventListener('click', function () {
+            var canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                var link = document.createElement('a');
+                link.download = 'qr-code.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        });
+    </script>
 </body>
+
 </html>
