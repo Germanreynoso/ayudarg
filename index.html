@@ -4,278 +4,668 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.O.S. - Pedro Gerardo Reynoso</title>
+    <title>SOS QR - Sistema de Identificación Solidaria</title>
 
-    <meta name="description" content="Información de emergencia para Pedro German Esteban">
-    <meta name="theme-color" content="#e63946">
+    <meta name="description"
+        content="Protege a tus seres queridos con nuestra pulsera de identificación QR. Rapidez y seguridad en emergencias.">
+    <meta name="theme-color" content="#2563eb">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
         :root {
-            --alerta: #e63946;
-            --exito: #2a9d8f;
-            --fondo: #f1faee;
-            --texto: #1d3557;
-            --blanco: #ffffff;
-            --gris-suave: #f8f9fa;
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --text: #0f172a;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #333;
-            /* Fondo oscuro para resaltar el "teléfono" */
-            color: var(--texto);
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .phone-container {
-            width: 100%;
-            max-width: 450px;
-            background: var(--blanco);
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Encabezado de Emergencia */
-        .emergency-banner {
-            background-color: var(--alerta);
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .emergency-banner h1 {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Foto y Nombre */
-        .profile-header {
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        .avatar-container {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            border: 5px solid var(--alerta);
-            overflow: hidden;
-            background-color: #eee;
-        }
-
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .patient-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--texto);
-            margin-bottom: 5px;
-        }
-
-        .location-tag {
-            color: #666;
-            font-size: 0.9rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* Botones de Acción */
-        .action-area {
-            padding: 0 25px 25px;
+        /* --- UI Components --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--text), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            font-size: 1.1rem;
+        }
+
+        /* --- Header/Nav --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent);
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* --- Origin Section --- */
+        .origin {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .origin-card {
+            background: var(--bg);
+            padding: 50px;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .origin-text blockquote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        /* --- Benefits Section --- */
+        .benefits {
+            padding: 100px 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 20px;
-            border-radius: 15px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            font-size: 1.8rem;
+            margin: 0 auto 24px;
         }
 
-        .btn:active {
-            transform: scale(0.95);
+        /* --- How it Works --- */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--text);
+            color: var(--white);
         }
 
-        .btn-phone {
-            background-color: var(--exito);
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .btn-whatsapp {
-            background-color: #25D366;
+        .step {
+            text-align: center;
+            position: relative;
         }
 
-        .btn-download {
-            background-color: #007bff;
-        }
-
-        /* Secciones de Información */
-        .info-card {
-            margin: 0 20px 20px;
-            padding: 20px;
-            border-radius: 15px;
-            background: #fff8e1;
-            border-left: 5px solid #ffc107;
-        }
-
-        .info-card h2 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #856404;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            font-size: 1.2rem;
         }
 
-        .data-table {
-            width: 100%;
-            padding: 0 20px 40px;
-            flex-grow: 1;
+        /* --- Form Section --- */
+        .request-form {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
 
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
         }
 
-        .data-label {
-            font-weight: bold;
-            color: #555;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full {
+            grid-column: span 2;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
-        .data-value {
-            color: var(--texto);
-            font-weight: 500;
-            text-align: right;
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            font-family: inherit;
+            transition: all 0.3s;
         }
 
-        .footer-tag {
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 80px 0 40px;
+            background: #0f172a;
+            color: #cbd5e1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 25px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 20px;
-            background: var(--gris-suave);
-            font-size: 0.8rem;
-            color: #aaa;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+
+            .hero-grid,
+            .origin-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: span 1;
+            }
+
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="phone-container">
-        <div class="emergency-banner">
-            <h1><i class="fas fa-exclamation-circle"></i> AYUDA POR FAVOR</h1>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-qrcode"></i> SOS QR
+                </a>
+                <div class="nav-links">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#beneficios">Beneficios</a>
+                    <a href="#solicitar">Solicitar Pulsera</a>
+                </div>
+                <a href="#solicitar" class="btn btn-primary">Pedir Pulsera</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="profile-header">
-            <div class="avatar-container">
-                <img src="pedro_reynoso_v2.png" alt="Pedro Gerardo Reynoso">
-            </div>
-            <h2 class="patient-name">Pedro Gerardo Reynoso</h2>
-            <div class="location-tag">
-                <i class="fas fa-map-marker-alt"></i> San Miguel de Tucumán
-            </div>
-        </div>
-
-        <div class="action-area">
-            <a href="tel:+543814028779" class="btn btn-phone">
-                <i class="fas fa-phone-alt"></i> LLAMAR A FAMILIA
-            </a>
-            <a href="https://wa.me/543816789468?text=Hola,%20acabo%20de%20encontrar%20a%20Pedro%20Gerardo%20Reynoso.%20Estoy%20con%20él.%20Por%20favor%20respondame."
-                class="btn btn-whatsapp">
-                <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
-            </a>
-            <div id="qrcode" style="text-align: center; margin-top: 20px;"></div>
-            <button id="download-qr" class="btn btn-download">
-                <i class="fas fa-download"></i> DESCARGAR QR
-            </button>
-        </div>
-
-        <div class="info-card">
-            <h2><i class="fas fa-user-shield"></i> ¿Cómo ayudar?</h2>
-            <p style="margin-top: 8px; font-size: 0.95rem; line-height: 1.4;">
-                Pedro puede estar confundido. Por favor, mantenga la calma, háblele amablemente y no lo deje solo hasta
-                que llegue <strong>Silvia Arias</strong>.
-            </p>
-        </div>
-
-        <div class="data-table">
-
-            <div class="data-row">
-                <span class="data-label">Obra Social</span>
-                <span class="data-value">Ospe</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">Domicilio</span>
-                <span class="data-value">Av Independencia 3200</span>
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content animate__animated animate__fadeInLeft">
+                    <h1>Garantiza el regreso a casa de los que amas</h1>
+                    <p>Un sistema de identificación de emergencia simple, económico y vital para personas con
+                        discapacidad o adultos mayores.</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#solicitar" class="btn btn-primary">Obtener mi pulsera</a>
+                        <a href="#nosotros" class="btn btn-outline">Conocer la historia</a>
+                    </div>
+                </div>
+                <div class="hero-image animate__animated animate__fadeInRight">
+                    <img src="hero_bracelet_emotional.png" alt="Seguridad y Cuidado">
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="footer-tag">
-            Proyecto Identificación Solidaria <br>
-            Tucumán, Argentina - 2025
+    <section id="nosotros" class="origin">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <p class="section-subtitle">Lo que nació de una tragedia se convirtió en una misión de esperanza para toda
+                Tucumán.</p>
+
+            <div class="origin-card animate__animated animate__fadeInUp">
+                <div class="origin-image">
+                    <img src="qr_bracelet_detail.png" alt="Pulsera QR Detalle"
+                        style="width: 100%; border-radius: 20px;">
+                </div>
+                <div class="origin-text">
+                    <h3>¿Cómo surgió esta idea?</h3>
+                    <p>Hace poco tiempo, en nuestra provincia, ocurrió una tragedia evitable. Una persona con
+                        discapacidad mental se desorientó y se perdió. Quienes lo encontraron no tenían forma de saber
+                        quién era ni cómo contactar a su familia. Lamentablemente, falleció solo.</p>
+                    <blockquote>
+                        "Nadie debería morir solo por no poder decir su nombre."
+                    </blockquote>
+                    <p>De esa necesidad dolorosa nace <strong>SOS QR</strong>: un sistema que garantiza que cualquier
+                        persona que encuentre a alguien perdido pueda, en segundos, saber quién es y cómo contactar a su
+                        familia.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Beneficios Vitales</h2>
+            <p class="section-subtitle">Por qué una pulsera SOS QR es la mejor inversión en tranquilidad para tu
+                familia.</p>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Rapidez Crítica</h3>
+                    <p>Identificación inmediata en segundos. De horas de angustia a minutos de resolución.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h3>Datos Médicos</h3>
+                    <p>Información de alergias, medicación y condiciones especiales visibles al instante.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-users-cog"></i></div>
+                    <h3>Sin Apps</h3>
+                    <p>Funciona con cualquier celular. No requiere descargar nada ni tener conocimientos técnicos.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Resistente</h3>
+                    <p>Silicona médica hipoalergénica, resistente al agua, golpes y el desgaste diario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--white); -webkit-text-fill-color: var(--white);">Cómo funciona
+            </h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Solicita</h4>
+                    <p>Pide tu pulsera personalizada a través de nuestro formulario.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Registra</h4>
+                    <p>Carga los datos de emergencia: fotos, contactos y alergias.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Protege</h4>
+                    <p>La persona lleva la pulsera siempre consigo para su seguridad.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="profile.html" target="_blank" class="btn btn-outline"
+                    style="color: white; border-color: white;">Ver demostración de perfil</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="solicitar" class="request-form">
+        <div class="container">
+            <h2 class="section-title">Solicita tu Pulsera</h2>
+            <p class="section-subtitle">Completa el formulario y nos pondremos en contacto para gestionar tu sistema de
+                identificación.</p>
+
+            <div class="form-container">
+                <form id="braceletForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Nombre del Solicitante</label>
+                            <input type="text" id="name" placeholder="Tu nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email de contacto</label>
+                            <input type="email" id="email" placeholder="tu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono de contacto</label>
+                            <input type="tel" id="phone" placeholder="Ej: 381 1234567" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Localidad (Tucumán)</label>
+                            <select id="location">
+                                <option value="capital">San Miguel de Tucumán</option>
+                                <option value="yerba-buena">Yerba Buena</option>
+                                <option value="tafi-viejo">Tafí Viejo</option>
+                                <option value="concepcion">Concepción</option>
+                                <option value="otros">Otras localidades</option>
+                            </select>
+                        </div>
+                        <div class="form-group full">
+                            <label for="recipient">¿Para quién es la pulsera? (Parentesco/Condición)</label>
+                            <input type="text" id="recipient"
+                                placeholder="Ej: Mi padre con Alzheimer / Hijo con Autismo">
+                        </div>
+                        <div class="form-group full">
+                            <label for="message">Mensaje Adicional (Opcional)</label>
+                            <textarea id="message" rows="4" placeholder="Alguna duda o detalle especial..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Enviar
+                        Solicitud</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo"><i class="fas fa-qrcode"></i> SOS QR</div>
+                    <p>Un proyecto nacido en Tucumán para el mundo. Protegiendo la dignidad y la vida a través de la
+                        tecnología solidaria.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#beneficios">Beneficios</a></li>
+                        <li><a href="profile.html">Demo Perfil</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@sosqr.com.ar</li>
+                        <li><i class="fas fa-phone"></i> +54 381 4028779</li>
+                        <li><i class="fab fa-instagram"></i> @sosqr_tucuman</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Proyecto SOS QR - Identificación Solidaria. San Miguel de Tucumán, Argentina.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        new QRCode(document.getElementById("qrcode"), "https://bucolic-tapioca-152ed7.netlify.app/");
-
-        document.getElementById('download-qr').addEventListener('click', function () {
-            var canvas = document.querySelector('#qrcode canvas');
-            if (canvas) {
-                var link = document.createElement('a');
-                link.download = 'qr-code.png';
-                link.href = canvas.toDataURL();
-                link.click();
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
+        });
+
+        // Form Submission
+        document.getElementById('braceletForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Nos pondremos en contacto contigo en las próximas 24-48 horas.');
+            e.target.reset();
         });
     </script>
 </body>
