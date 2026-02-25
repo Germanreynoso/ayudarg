@@ -408,6 +408,151 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* --- Carousel Section --- */
+        .carousel-container {
+            padding: 80px 0;
+            background: var(--white);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-slide {
+            min-width: calc(33.333% - 14px);
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide:hover img {
+            transform: scale(1.1);
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+        }
+
+        .carousel-caption h4 {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        .carousel-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* --- Testimonials / Stories --- */
+        .stories {
+            padding: 100px 0;
+            background: var(--bg);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .story-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .story-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .story-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .story-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .story-author-info h5 {
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .story-author-info span {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
         /* --- Responsive --- */
         @media (max-width: 992px) {
 
@@ -469,8 +614,8 @@
             <div class="hero-grid">
                 <div class="hero-content animate__animated animate__fadeInLeft">
                     <h1>Garantiza el regreso a casa de los que amas</h1>
-                    <p>Un sistema de identificación de emergencia simple, económico y vital para personas con
-                        discapacidad o adultos mayores.</p>
+                    <p>Un sistema de identificación de emergencia vital para cualquier persona: niños, deportistas,
+                        viajeros y seres queridos que necesiten protección.</p>
                     <div style="display: flex; gap: 15px;">
                         <a href="#solicitar" class="btn btn-primary">Obtener mi pulsera</a>
                         <a href="#nosotros" class="btn btn-outline">Conocer la historia</a>
@@ -479,6 +624,50 @@
                 <div class="hero-image animate__animated animate__fadeInRight">
                     <img src="hero_bracelet_emotional.png" alt="Seguridad y Cuidado">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="carousel" class="carousel-container">
+        <div class="container">
+            <h2 class="section-title">Para cada etapa de la vida</h2>
+            <p class="section-subtitle">Seguridad y tranquilidad sin importar quién seas o a dónde vayas.</p>
+
+            <div class="carousel-viewport">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide" style="aspect-ratio: 1/1;">
+                        <img src="carousel_child.png" alt="Niños protegidos">
+                        <div class="carousel-caption">
+                            <h4>Niños</h4>
+                            <p>Tranquilidad en el parque y excursiones.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="aspect-ratio: 1/1;">
+                        <img src="carousel_athlete.png" alt="Deportistas seguros">
+                        <div class="carousel-caption">
+                            <h4>Deportistas</h4>
+                            <p>Tu identificación vital en cada ruta.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="aspect-ratio: 1/1;">
+                        <img src="carousel_traveler.png" alt="Viajeros protegidos">
+                        <div class="carousel-caption">
+                            <h4>Viajeros</h4>
+                            <p>Seguridad en cualquier lugar del mundo.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide" style="aspect-ratio: 1/1;">
+                        <img src="carousel_elderly.png" alt="Adultos mayores">
+                        <div class="carousel-caption">
+                            <h4>Adultos Mayores</h4>
+                            <p>Autonomía con el respaldo de tu familia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls" id="carouselDots">
+                <!-- Dots will be added by JS -->
             </div>
         </div>
     </section>
@@ -502,9 +691,10 @@
                     <blockquote>
                         "Nadie debería morir solo por no poder decir su nombre."
                     </blockquote>
-                    <p>De esa necesidad dolorosa nace <strong>SOS QR</strong>: un sistema que garantiza que cualquier
-                        persona que encuentre a alguien perdido pueda, en segundos, saber quién es y cómo contactar a su
-                        familia.</p>
+                    <p>De esa necesidad dolorosa nace <strong>SOS QR</strong>: hoy evolucionado para proteger a
+                        <strong>cualquier persona</strong>, desde niños en excursiones hasta deportistas de riesgo,
+                        garantizando que quien te encuentre sepa quién eres en segundos.
+                    </p>
                 </div>
             </div>
         </div>
@@ -536,6 +726,64 @@
                     <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3>Resistente</h3>
                     <p>Silicona médica hipoalergénica, resistente al agua, golpes y el desgaste diario.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="historias" class="stories">
+        <div class="container">
+            <h2 class="section-title">Historias que Inspiran</h2>
+            <p class="section-subtitle">Pequeños relatos ficticios de cómo una pulsera SOS QR puede cambiar el curso de
+                un día difícil.</p>
+
+            <div class="stories-grid">
+                <!-- Historia 1: El niño en el parque -->
+                <div class="story-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-quote-left story-icon"></i>
+                    <p class="story-text">
+                        "Mateo de 6 años se soltó de mi mano en una plaza llena. Fueron 5 minutos de terror, hasta que
+                        un policía lo encontró. Escaneó su pulsera y me llamó al instante. Mateo no tuvo que decir nada,
+                        su pulsera habló por él."
+                    </p>
+                    <div class="story-author">
+                        <div class="story-author-info">
+                            <h5>Carla M.</h5>
+                            <span>Madre de Mateo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historia 2: El ciclista -->
+                <div class="story-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <i class="fas fa-quote-left story-icon"></i>
+                    <p class="story-text">
+                        "Salí a rodar solo y tuve una caída fuerte. Perdí el conocimiento por unos minutos. Los médicos
+                        supieron que soy alérgico a ciertos medicamentos gracias al SOS QR antes de llegar al hospital.
+                        Eso evitó complicaciones graves."
+                    </p>
+                    <div class="story-author">
+                        <div class="story-author-info">
+                            <h5>Rodrigo G.</h5>
+                            <span>Ciclista Amateur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historia 3: El viajero -->
+                <div class="story-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <i class="fas fa-quote-left story-icon"></i>
+                    <p class="story-text">
+                        "Mi abuelo se desorientó en una feria de artesanos durante el viaje. Una vendedora vio su SOS
+                        QR, escaneó el código y nos envió un mensaje de WhatsApp con su ubicación. Lo encontramos en
+                        menos de 10 minutos gracias a la tecnología."
+                    </p>
+                    <div class="story-author">
+                        <div class="story-author-info">
+                            <h5>Sofía L.</h5>
+                            <span>Nieta viajera</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -604,7 +852,7 @@
                         <div class="form-group full">
                             <label for="recipient">¿Para quién es la pulsera? (Parentesco/Condición)</label>
                             <input type="text" id="recipient"
-                                placeholder="Ej: Mi padre con Alzheimer / Hijo con Autismo">
+                                placeholder="Ej: Mi hijo, mi abuelo, yo mismo (deportista/viajero)">
                         </div>
                         <div class="form-group full">
                             <label for="message">Mensaje Adicional (Opcional)</label>
@@ -623,8 +871,8 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <div class="footer-logo"><i class="fas fa-qrcode"></i> SOS QR</div>
-                    <p>Un proyecto nacido en Tucumán para el mundo. Protegiendo la dignidad y la vida a través de la
-                        tecnología solidaria.</p>
+                    <p>Protegiendo la vida a través de tecnología solidaria. Ideal para niños, deportistas, viajeros y
+                        adultos mayores.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Enlaces</h4>
@@ -660,6 +908,42 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        // Carousel Logic
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentIndex = 0;
+
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            const slideWidth = slides[0].offsetWidth + 20;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            updateDots();
+        }
+
+        // Auto slide
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            if (window.innerWidth > 992 && currentIndex > slides.length - 3) currentIndex = 0;
+            else if (window.innerWidth > 600 && currentIndex > slides.length - 2) currentIndex = 0;
+            goToSlide(currentIndex);
+        }, 3000);
 
         // Form Submission
         document.getElementById('braceletForm').addEventListener('submit', (e) => {
