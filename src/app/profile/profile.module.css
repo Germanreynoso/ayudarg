@@ -1,0 +1,204 @@
+.body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+    color: #1d3557;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.phoneContainer {
+    width: 100%;
+    max-width: 450px;
+    background: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.emergencyBanner {
+    background-color: #e63946;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+.emergencyBanner h1 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.profileHeader {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.avatarContainer {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 5px solid #e63946;
+    overflow: hidden;
+    background-color: #eee;
+    position: relative;
+}
+
+.patientName {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1d3557;
+    margin-bottom: 5px;
+}
+
+.locationTag {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.actionCard {
+    margin: 0 20px 25px;
+    padding: 25px;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border-radius: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.contactButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.btnMini {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+}
+
+.btnMini:active {
+    transform: scale(0.96);
+}
+
+.qrWrapper {
+    position: relative;
+    padding: 15px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+    border: 1px solid #edf2f7;
+}
+
+.downloadBadge {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background: #2563eb;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+    border: 3px solid white;
+    transition: transform 0.2s;
+}
+
+.downloadBadge:hover {
+    transform: scale(1.1);
+}
+
+.qrLabel {
+    font-size: 0.75rem;
+    color: #A0AEC0;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.infoCard {
+    margin: 0 20px 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #fff8e1;
+    border-left: 5px solid #ffc107;
+}
+
+.infoCard h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #856404;
+}
+
+.dataTable {
+    width: 100%;
+    padding: 0 20px 40px;
+    flex-grow: 1;
+}
+
+.dataRow {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.dataLabel {
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.dataValue {
+    color: #1d3557;
+    font-weight: 500;
+    text-align: right;
+}
+
+.footerTag {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    font-size: 0.8rem;
+    color: #aaa;
+}
