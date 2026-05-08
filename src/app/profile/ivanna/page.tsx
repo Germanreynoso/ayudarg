@@ -5,7 +5,7 @@ export default function IvannaProfile() {
         <ProfileTemplate 
             name="Ivanna Gutiérrez"
             location="San Miguel de Tucumán"
-            image="/ivanna_profile.png"
+            image="/ivanna_photo.jpg"
             emergencyInfo="Tengo epilepsia. Puedo presentar episodios de desconexión, desorientación, deambulación y pérdida de memoria. Si me ves confundida, caminando sin rumbo, sin responder bien o sin recordar dónde estoy, por favor no me dejes sola. Acompañame a un lugar seguro y comunicate con mis contactos."
             importantNotes="No me sujetes con fuerza, no me des agua ni medicación por boca durante el episodio. Si convulsiono, protegé mi cabeza y llamá a emergencias."
             contacts={[
